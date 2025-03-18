@@ -1,6 +1,7 @@
 <script lang="ts">
   import { fade, scale, fly } from "svelte/transition";
   import { elasticOut, bounceInOut } from "svelte/easing";
+  import { onMount } from "svelte";
   import CenterBubble from "$lib/CenterBubble.svelte";
   import SideBubble from "$lib/SideBubble.svelte";
   import FundingChart from "$lib/FundingChart.svelte";
@@ -15,6 +16,27 @@
   function updateWindowWidth(width: number) {
     windowWidth.set(width);
   }
+
+  // Add rotation state
+  const rotationSpeed = writable(0.1); // degrees per frame
+  const currentRotation = writable(0);
+  let animationFrame: number;
+
+  // Animation function
+  function animate() {
+    currentRotation.update((r) => r + $rotationSpeed);
+    animationFrame = requestAnimationFrame(animate);
+  }
+
+  onMount(() => {
+    // Start the rotation animation
+    animationFrame = requestAnimationFrame(animate);
+
+    // Clean up on component destruction
+    return () => {
+      cancelAnimationFrame(animationFrame);
+    };
+  });
 
   // Nonprofit data
   const nonprofitName = "Template Nonprofit";
@@ -71,6 +93,7 @@
           total={sideNodes.length}
           active={$activeNode === node.id}
           onClick={() => handleNodeClick(node.id)}
+          currentRotation={$currentRotation}
         />
       {/each}
 
@@ -113,7 +136,7 @@
     width: 80%;
     right: 10%;
     position: fixed;
-    top: 30%;
+    top: 20%;
     border-left: 4px solid #3b82f6; /* Blue border on the left */
   }
 
