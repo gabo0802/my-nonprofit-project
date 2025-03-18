@@ -1,6 +1,6 @@
 <script lang="ts">
   import { fade, scale, fly } from "svelte/transition";
-  import { elasticOut } from "svelte/easing";
+  import { elasticOut, bounceInOut } from "svelte/easing";
   import CenterBubble from "$lib/CenterBubble.svelte";
   import SideBubble from "$lib/SideBubble.svelte";
   import FundingChart from "$lib/FundingChart.svelte";
@@ -77,28 +77,27 @@
       <!-- Detail panel that appears when a node is active -->
       {#if $activeNodeData}
         <div
-          transition:scale={{
-            duration: 300,
-            easing: elasticOut,
-            start: 0.5,
+          transition:fade={{
+            duration: 200,
+            easing: bounceInOut,
           }}
-          class="detail-panel absolute bottom-0 left-0 right-0 bg-white rounded-lg shadow-lg p-4 z-20"
+          class="detail-panel fixed top-1/2 right-0 transform -translate-y-1/2 bg-white rounded-l-lg shadow-lg p-6 z-20"
         >
-          <h2 class="text-xl font-bold text-blue-600 mb-2">
+          <h2 class="text-xl font-bold text-blue-600 mb-4">
             {$activeNodeData.title}
           </h2>
-          <p class="mb-4">{$activeNodeData.content}</p>
+          <p class="mb-6">{$activeNodeData.content}</p>
 
           <!-- If it's the funding node, show the chart -->
           {#if $activeNodeData.id === 2 && $activeNodeData.chartData}
-            <div class="mt-4">
-              <h3 class="text-lg font-semibold mb-2">Funding Breakdown</h3>
+            <div class="mt-6 mb-3">
+              <h3 class="text-lg font-semibold mb-3">Funding Breakdown</h3>
               <FundingChart data={$activeNodeData.chartData} />
             </div>
           {/if}
 
           <button
-            class="mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors"
+            class="mb-3 mr-1 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors"
             on:click={() => handleNodeClick($activeNodeData.id)}
           >
             Close
@@ -111,14 +110,21 @@
 
 <style>
   .detail-panel {
-    max-height: 50vh;
-    overflow-y: auto;
+    width: 80%;
+    right: 10%;
+    position: fixed;
+    top: 30%;
+    border-left: 4px solid #3b82f6; /* Blue border on the left */
   }
 
   /* Responsive adjustments */
   @media (max-width: 768px) {
     .detail-panel {
+      width: 80%; /* Wider on mobile */
       max-height: 60vh;
+      right: 10%; /* Center horizontally on mobile */
+      border-left: none;
+      border-radius: 0.5rem;
     }
   }
 </style>
