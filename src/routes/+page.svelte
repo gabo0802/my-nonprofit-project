@@ -79,7 +79,7 @@
 
 <svelte:window bind:innerWidth={$windowWidth} />
 
-<div class="min-h-screen bg-indigo-100 p-4">
+<div class="min-h-screen bg-indigo-100 p-4 flex items-center justify-center">
   <div class={`container mx-auto ${$isMobile ? "flex-col" : "flex"}`}>
     <div class="relative w-full max-w-4xl aspect-square mx-auto">
       <!-- Center bubble -->
@@ -143,11 +143,11 @@
   /* Responsive adjustments */
   @media (max-width: 768px) {
     .detail-panel {
-      width: 80%; /* Wider on mobile */
-      max-height: 60vh;
-      right: 10%; /* Center horizontally on mobile */
-      border-left: none;
-      border-radius: 0.5rem;
+      width: 80%;
+      right: 10%;
+      position: fixed;
+      top: 20%;
+      border-left: 4px solid #3b82f6; /* Blue border on the left */
     }
   }
 </style>
