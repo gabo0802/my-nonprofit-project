@@ -11,12 +11,11 @@
 
   // Create a store for window width
   const windowWidth = writable<number>(0);
+
   const isMobile = derived(windowWidth, ($windowWidth) => $windowWidth < 768);
 
-  // Function to update window width
-  function updateWindowWidth(width: number) {
-    windowWidth.set(width);
-  }
+  let innerWidth = 0;
+  $: windowWidth.set(innerWidth);
 
   // Add rotation state
   const rotationSpeed = writable(0.1); // degrees per frame
@@ -84,7 +83,7 @@
             duration: 200,
             easing: bounceInOut,
           }}
-          class="detail-panel fixed top-1/2 right-0 transform -translate-y-1/2 bg-white rounded-l-lg shadow-lg p-6 z-20"
+          class="detail-panel fixed bg-white rounded-lg shadow-lg p-6 z-20"
         >
           <h2 class="text-xl font-bold text-blue-600 mb-4">
             {$activeNodeData.title}
@@ -114,9 +113,24 @@
 <style>
   .detail-panel {
     width: 80%;
+    left: 10%;
     right: 10%;
     position: fixed;
     top: 20%;
-    border-left: 4px solid #3b82f6; /* Blue border on the left */
+    min-width: 300px;
+    min-height: 200px;
+    max-height: 70vh;
+    overflow-y: auto;
+    border-left: 4px solid #3b82f6;
+  }
+
+  @media (max-width: 768px) {
+    .detail-panel {
+      width: 90%;
+      margin-top: auto;
+      margin-bottom: auto;
+      min-width: unset;
+      max-height: 80vh;
+    }
   }
 </style>
