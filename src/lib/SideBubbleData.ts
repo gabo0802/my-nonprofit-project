@@ -1,5 +1,7 @@
   export const sideNodes = [
-    { id: 1, title: "Mission", content: "To promote sustainable practices..." },
+    { id: 1, title: "Mission", content: "Next Gen Arena is dedicated to breaking barriers in e-sports by providing underserved youth" +
+      "with access to competitive gaming environments, STEM-based learning opportunities, and holistic mentorship. We use the power of play" + 
+      "to unlock potential, fostering inclusive spaces where the next generation of gamers can grow not just as players, but as students, leaders, and innovators." },
     {
       id: 2,
       title: "Funding",
