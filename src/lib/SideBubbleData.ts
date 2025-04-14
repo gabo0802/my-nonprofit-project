@@ -40,4 +40,30 @@
           "to developers building accessible learning tools, our team will be committed to designing safe, supportive, and inspiring spaces " +
           "for the next generation of players to thrive."
       },
+      {
+        id: 6,
+        title: "🔭 Vision",
+        content:
+          "Next Gen Arena envisions a future where competitive gaming is a gateway to opportunity—not a barrier. " +
+          "We strive to build a world where every young person, regardless of background or resources, " +
+          "can access the tools, training, and support to thrive in e-sports, education, and beyond."
+      },
+      {
+        id: 7,
+        title: "💡 Core Values",
+        content:
+          "At the heart of Next Gen Arena are the values of equity, empowerment, innovation, and community. " +
+          "We believe in inclusive access to technology and opportunity, the power of mentorship and mental wellness, " +
+          "and the importance of fostering spaces where young people feel seen, supported, and inspired to succeed."
+      },
+      {
+        id: 8,
+        title: "🎯 Goals",
+        content:
+          "Our immediate goals include launching pilot programs in key underserved regions, building fully equipped gaming arenas, " +
+          "and establishing partnerships with schools, universities, and industry leaders. Long-term, we aim to scale our impact nationally, " +
+          "train thousands of young gamers, and become a recognized pipeline for talent, education, and leadership in the e-sports ecosystem."
+      }
+            
+      
   ];
