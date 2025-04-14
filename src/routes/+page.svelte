@@ -5,6 +5,7 @@
   import CenterBubble from "$lib/CenterBubble.svelte";
   import SideBubble from "$lib/SideBubble.svelte";
   import FundingChart from "$lib/FundingChart.svelte";
+  import ProgramsTable from "$lib/ProgramsTable.svelte";
   import { sideNodes } from "$lib/SideBubbleData";
   import { derived } from "svelte/store";
   import { writable } from "svelte/store";
@@ -39,7 +40,7 @@
   });
 
   // Nonprofit data
-  const nonprofitName = "Template Nonprofit";
+  const nonprofitName = "Next Gen Arena";
 
   // Active node tracking
   const activeNode = writable<number | null>(null);
@@ -58,7 +59,9 @@
 
 <svelte:window bind:innerWidth={$windowWidth} />
 
-<div class="min-h-screen bg-indigo-100 p-4 flex items-center justify-center">
+<div
+  class="min-h-screen bg-[url(https://images.unsplash.com/photo-1570284613060-766c33850e00?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3)] p-4 flex items-center justify-center"
+>
   <div class={`container mx-auto ${$isMobile ? "flex-col" : "flex"}`}>
     <div class="relative w-full max-w-4xl aspect-square mx-auto">
       <!-- Center bubble -->
@@ -95,6 +98,12 @@
             <div class="mt-6 mb-3">
               <h3 class="text-lg font-semibold mb-3">Funding Breakdown</h3>
               <FundingChart data={$activeNodeData.chartData} />
+            </div>
+          {/if}
+
+          {#if $activeNodeData.id === 3}
+            <div class="mt-6 mb-3">
+              <ProgramsTable />
             </div>
           {/if}
 
