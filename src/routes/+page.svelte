@@ -95,9 +95,11 @@
 
           <!-- If it's the funding node, show the chart -->
           {#if $activeNodeData.id === 2 && $activeNodeData.chartData}
-            <div class="mt-6 mb-3">
+            <div class="flex flex-col items-center">
               <h3 class="text-lg font-semibold mb-3">Funding Breakdown</h3>
-              <FundingChart data={$activeNodeData.chartData} />
+              <div class="w-full max-w-md">
+                <FundingChart data={$activeNodeData.chartData} />
+              </div>
             </div>
           {/if}
 
