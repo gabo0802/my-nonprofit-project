@@ -16,8 +16,8 @@
   let chartElement: HTMLDivElement;
 
   onMount(() => {
-    const width = 200;
-    const height = 200;
+    const width = 400;
+    const height = 400;
     const radius = Math.min(width, height) / 2;
 
     // Create SVG element
@@ -67,7 +67,46 @@
       .attr("transform", (d) => `translate(${arcGenerator.centroid(d)})`)
       .attr("text-anchor", "middle")
       .attr("font-size", "10px")
-      .text((d) => d.data.source);
+      .text((d) => {
+        const total = d3.sum(data, (entry) => (entry as FundingData).amount);
+        const percentage = (d.data.amount / total) * 100;
+        return `${Math.round(percentage)}%`;
+      });
+
+    // Add a legend
+    const legendRectSize = 12;
+    const legendSpacing = 8;
+
+    const legend = d3
+      .select(chartElement)
+      .append("div")
+      .attr("class", "legend")
+      .style("display", "flex")
+      .style("flex-wrap", "wrap")
+      .style("justify-content", "center")
+      .style("margin-top", "16px");
+
+    const legendItems = legend
+      .selectAll(".legend-item")
+      .data(data)
+      .enter()
+      .append("div")
+      .attr("class", "legend-item")
+      .style("display", "flex")
+      .style("align-items", "center")
+      .style("margin", "4px 8px");
+
+    legendItems
+      .append("div")
+      .style("width", `${legendRectSize}px`)
+      .style("height", `${legendRectSize}px`)
+      .style("margin-right", "6px")
+      .style("background-color", (d) => color((d as FundingData).source));
+
+    legendItems
+      .append("span")
+      .style("font-size", "12px")
+      .text((d) => (d as FundingData).source);
   });
 </script>
 
