@@ -20,7 +20,7 @@
     },
     { id: 3, title: "🧩 Programs", content: "At Next Gen Arena, we believe gaming is more than a pastime—it’s a launchpad. Our programs are designed to meet youth " + 
       "where they are, blending community workshops, education, mentorship, and mental wellness into an ecosystem that supports every kind of player. " + 
-      "Whether it’sbuilding skills in the arena, the classroom, or real life, we provide the resources and relationships needed to turn passion into possibility." },
+      "Whether it’s building skills in the arena, the classroom, or real life, we provide the resources and relationships needed to turn passion into possibility." },
       {
         id: 4,
         title: "🌍 Impact",
